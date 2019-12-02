@@ -19,7 +19,7 @@ class Database(object):
 
 		for key in extract:
 
-			# Count of the number of "siblings" that has each label of the image
+		    # Count of the number of "siblings" that has each label of the image
 		    self.images_siblings[key] = {}
 		    for val in extract[key]:
 		        if val in self.nodes:
@@ -28,7 +28,7 @@ class Database(object):
 		            self.images_siblings[key][val] = 0
 
 		    self.status[key] = 'valid' # Setting by default the images status to 'valid'
-			# Changing the status to 'invalid' if a label is not matched
+		    # Changing the status to 'invalid' if a label is not matched
 		    for val in extract[key]: 
 		        for i in range(len(self.nodes)):
 		            if val not in self.nodes:
@@ -40,7 +40,7 @@ class Database(object):
 		for key in self.images_siblings:
 		    if self.status[key] == 'invalid':
 		        self.status[key] = 'valid' # Setting by default the status to 'valid'
-				# Changing this status to 'invalid' if a label is not matched
+			# Changing this status to 'invalid' if a label is not matched
 		        for val in self.images_siblings[key]:
 		            for i in range(len(self.nodes)):
 		                if val not in self.nodes:
@@ -50,11 +50,11 @@ class Database(object):
 		for key in self.images_siblings:
 		    if self.status[key] == 'valid':
 		        for val in self.images_siblings[key]:
-					# if a label of the image is in the parents list, set status to 'granularity_staged'
+			    # if a label of the image is in the parents list, set status to 'granularity_staged'
 		            if val in self.parents: 
 		               self.status[key] = 'granularity_staged'
 		        for val in self.images_siblings[key]:
-					# if the coverage has changed sinced the image was added, set status to "coverage_staged"
+			    # if the coverage has changed sinced the image was added, set status to "coverage_staged"
 		            if self.images_siblings[key][val] != self.parents.count(self.parents[self.nodes.index(val)]):
 		                self.status[key] = 'coverage_staged'		
 		return self.status
