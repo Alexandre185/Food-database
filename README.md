@@ -79,7 +79,7 @@ It does return:
 {"img001": "granularity_staged", "img002": "coverage_staged", "img003": "invalid"}
 ```
 
-Example 3:
+Example 3: (With the data available in the release)
 ```python
 from database import Database
 
