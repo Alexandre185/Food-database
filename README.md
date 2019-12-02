@@ -98,14 +98,17 @@ with open('img_extract.json') as json_file:
     img_extract = json.load(json_file)
 
 status = {}
-db = Database(graph_build[0][0])
-db.add_nodes(graph_build[1:])
-# Add extract
-db.add_extract(img_extract)
-# Graph edits
-db.add_nodes(graph_edits)
-# Update status
-status = db.get_extract_status()
+if len(graph_build) > 0:
+    # Build graph
+    db = Database(graph_build[0][0])
+    if len(graph_build) > 1:
+      db.add_nodes(graph_build[1:])
+    # Add extract
+    db.add_extract(img_extract)
+    # Graph edits
+    db.add_nodes(graph_edits)
+    # Update status
+    status = db.get_extract_status()
 
 status == expected_status
 ```
