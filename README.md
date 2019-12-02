@@ -8,9 +8,9 @@ The `Database` class (in the database.py file) is made of 4 attributes:
   
 The `Database` class has to be initialized with the root name (the name of the first node, the ensemble of the elements).
 
-The `nodes` and `parents` attributes are updated with the method `add_nodes`.
-The `images_siblings` attribute is updated with the method `add_extract`.
-The `images_status` is updated with the method `add_extract` where the new images status are set to `valid` or `invalid` and with the method `get_extract_status` that return the status of each image at the moment it is called: either `valid`, `invalid`, `granularity_staged` or `coverage_staged`.
+-The `nodes` and `parents` attributes are updated with the method `add_nodes`.
+-The `images_siblings` attribute is updated with the method `add_extract`.
+-The `images_status` is updated with the method `add_extract` where the new images status are set to `valid` or `invalid` and with the method `get_extract_status` that return the status of each image at the moment it is called: either `valid`, `invalid`, `granularity_staged` or `coverage_staged`.
 
   
  
