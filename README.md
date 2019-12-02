@@ -1,6 +1,6 @@
 # Food-database
 
-The `Database` class (in the database.py file), is made of 4 attributes:
+The `Database` class (in the database.py file) is made of 4 attributes:
   - `nodes` : a list of all the nodes in the database. eg: ['Core', A, B, A1]
   - `parents` : a list of the parents of each node in the database. eg: [None, 'Core', 'Core', A]
   - `images_siblings` : a dictionnary of dictionnaries. Each primary key is an image ID, each secondary key is a label of this image and each value is the number (including itself) of "siblings" labels (nodes that share the same parent node) that has this label when the image is added to the database. eg: {img001:{B:2, A1:1}}
@@ -77,4 +77,37 @@ print(status)
 It does return:
 ```python
 {"img001": "granularity_staged", "img002": "coverage_staged", "img003": "invalid"}
+```
+
+Example 3:
+```python
+import json
+
+with open('expected_status.json') as json_file:
+    expected_status = json.load(json_file)
+
+with open('graph_build.json') as json_file:
+    graph_build = json.load(json_file)
+
+with open('graph_edits.json') as json_file:
+    graph_edits = json.load(json_file)
+
+with open('img_extract.json') as json_file:
+    img_extract = json.load(json_file)
+
+status = {}
+db = Database(graph_build[0][0])
+db.add_nodes(graph_build[1:])
+# Add extract
+db.add_extract(img_extract)
+# Graph edits
+db.add_nodes(graph_edits)
+# Update status
+status = db.get_extract_status()
+
+status == expected_status
+```
+It does return:
+```python
+True
 ```
