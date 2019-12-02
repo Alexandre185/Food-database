@@ -81,6 +81,8 @@ It does return:
 
 Example 3:
 ```python
+from database import Database
+
 import json
 
 with open('expected_status.json') as json_file:
